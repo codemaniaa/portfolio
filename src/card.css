@@ -1,0 +1,19 @@
+.card{
+    background-color: aquamarine;
+    color: burlywood;
+    width: 300px;
+    height: auto;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+.card>button{
+    background-color: red;
+    padding: 5px 4px;
+    border-radius: 5px;
+}
+.section1{
+    background-color: blanchedalmond;
+    width: 100%;
+    padding: 10px 20px;
+    
+}
