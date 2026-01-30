@@ -7,7 +7,7 @@ import AboutSection from "./about.jsx";
 import WhyChooseMe from "./whyme.jsx";
 import ContactSection from "./contact.jsx";
 import PortfolioCards from "./projects.jsx"; 
-import Logo from './assets/logo.jpeg'
+import logo from './assets/logo.jpeg'
 import { Copyright,Github, Linkedin, PhoneIcon } from "lucide-react";
 
 function App(){
@@ -102,10 +102,10 @@ function Navbar({oncontactclick, onhomeclick, onprojectclick, onskillclick, onab
     <nav className="bg-gradient-to-r from-slate-900 to-slate-800 text-white shadow-lg fixed w-full top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Logo */}
+          {/* logo */}
           <div className="flex mr-10 gap-2  h-full items-center rounded-full">
             <div className="  bg-slate-900 rounded-full overflow-hidden w-12 h-12">
-          <img src={Logo} alt="" className="w-full h-full rounded-full"/>
+          <img src={logo} alt="" className="w-full h-full rounded-full"/>
             </div> 
             <div className="">
  <a href="#home" className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent hover:from-blue-300 hover:to-purple-400 transition-all duration-300">

@@ -217,16 +217,7 @@ My goal is to grow into a reliable and creative professional in the tech industr
             </div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-wrap gap-4">
-              <button className="group px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-xl transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/50 hover:scale-105 flex items-center gap-2">
-                <Download className="w-5 h-5 transition-transform group-hover:translate-y-0.5" />
-                Download Resume
-              </button>
-              <button className="group px-8 py-4 bg-slate-800/50 hover:bg-slate-700 text-white font-semibold rounded-xl transition-all duration-300 border border-slate-700/50 hover:border-purple-500/50 flex items-center gap-2">
-                View Projects
-                <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-              </button>
-            </div>
+            
           </div>
         </div>
 
