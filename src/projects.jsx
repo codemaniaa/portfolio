@@ -16,8 +16,8 @@ const PortfolioCards=forwardRef((props, ref )=> {
       description: "Islam For All is a comprehensive Islamic resource platform offering prayer times, Quranic verses, and educational content for Muslims worldwide.",
       image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop",
       tags: ["Python", "Tailwind", "React", "Django"],
-      liveUrl: "",
-      githubUrl: "#"
+      liveUrl: "https://islam-for-all.vercel.app/",
+      githubUrl: "https://github.com/codemaniaa/Islam-For-All"
     },
     {
       title: "Portfolio Dashboard",
