@@ -4,19 +4,19 @@ import { useEffect, useState,forwardRef } from 'react';
 const PortfolioCards=forwardRef((props, ref )=> {
   const projects = [
     {
-      title: "E-Commerce Platform",
-      description: "A full-stack e-commerce solution with payment integration, user authentication, and real-time inventory management.",
+      title: "AgriCare ",
+      description: "A full-stack Agriculture Market solution. Buy & Sell with payment integration, user authentication, and real-time inventory management.",
       image: "https://images.unsplash.com/photo-1557821552-17105176677c?w=800&h=600&fit=crop",
-      tags: ["React", "Node.js", "MongoDB", "Stripe"],
-      liveUrl: "#",
-      githubUrl: "#"
+      tags: ["React", "Tailwind", "PostgreSQL", "Django"],
+      liveUrl: "https://agricarepk.vercel.app",
+      githubUrl: "https://github.com/codemaniaa/AgriCare-Frontend-"
     },
     {
-      title: "AI Chat Application",
-      description: "Real-time chat application powered by AI with natural language processing and sentiment analysis features.",
+      title: "Islam For All",
+      description: "Islam For All is a comprehensive Islamic resource platform offering prayer times, Quranic verses, and educational content for Muslims worldwide.",
       image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop",
-      tags: ["Python", "TensorFlow", "React", "WebSocket"],
-      liveUrl: "#",
+      tags: ["Python", "Tailwind", "React", "Django"],
+      liveUrl: "",
       githubUrl: "#"
     },
     {
@@ -24,12 +24,12 @@ const PortfolioCards=forwardRef((props, ref )=> {
       description: "Interactive analytics dashboard for tracking project metrics with beautiful data visualizations and real-time updates.",
       image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
       tags: ["Vue.js", "D3.js", "Firebase", "Tailwind"],
-      liveUrl: "#",
-      githubUrl: "#"
+      liveUrl: "https://islam-for-all.vercel.app/",
+      githubUrl: "https://github.com/codemaniaa/Islam-For-All"
     },
     {
       title: "Mobile Fitness App",
-      description: "Cross-platform fitness tracking app with workout plans, progress tracking, and social features.",
+      description: "Cross-platform fitness tracking app with workout plans, progress tracking, and social features. Note: Its under development and will be available soon.",
       image: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=800&h=600&fit=crop",
       tags: ["React Native", "Express", "PostgreSQL"],
       liveUrl: "#",

@@ -39,11 +39,11 @@ export default function AboutSection() {
 
   const interests = [
     { icon: "🎨", text: "UI/UX Design", gradient: "from-pink-500 to-rose-500" },
-    { icon: "🚀", text: "Web3 & Blockchain", gradient: "from-purple-500 to-indigo-500" },
+    { icon: "🚀", text: "Python", gradient: "from-purple-500 to-indigo-500" },
     { icon: "🤖", text: "AI & Machine Learning", gradient: "from-blue-500 to-cyan-500" },
     { icon: "📱", text: "Mobile Development", gradient: "from-green-500 to-emerald-500" },
     { icon: "☁️", text: "Cloud Architecture", gradient: "from-orange-500 to-red-500" },
-    { icon: "🎮", text: "Game Development", gradient: "from-violet-500 to-purple-500" }
+    { icon: "🎮", text: "Web Development", gradient: "from-violet-500 to-purple-500" }
   ];
 
   return (
@@ -183,7 +183,7 @@ export default function AboutSection() {
               {activeTab === 'About' && (
                 <div className="space-y-4 text-gray-300 leading-relaxed">
                   <p>
-                     I am a passionate Computer Science student with a strong focus on React.js and modern web technologies. I enjoy building clean, responsive user interfaces and use Git & GitHub to manage code efficiently and collaborate on projects.
+                     I am a passionate Computer Science student with a strong focus on Python React.js, Django, PostgreSQL, TailwindCSS and modern web technologies. I enjoy building clean, responsive user interfaces and use Git & GitHub to manage code efficiently and collaborate on projects.
                      </p>
                   <p>
                     Beyond coding, I bring strong soft skills, hands-on experience in digital marketing, and a solid understanding of computer science and IT fundamentals. This combination allows me to create solutions that are not only technically sound but also user-focused and impactful.
@@ -283,3 +283,4 @@ My goal is to grow into a reliable and creative professional in the tech industr
     </div>
   );
 }
+
