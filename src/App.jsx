@@ -2,42 +2,45 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence, useScroll, useTransform, useInView } from "framer-motion";
 import * as THREE from "three";
 import { SiReact, SiNextdotjs, SiTypescript, SiNodedotjs, SiPython, SiTailwindcss, SiPostgresql, SiMongodb, SiDocker,
-SiGraphql, SiRedux, SiGit, SiFigma, SiWebgl, SiRust} from "react-icons/si";
-import {  FiGithub, FiExternalLink, FiMail, FiTwitter, FiLinkedin,  FiArrowRight, FiX, FiCode, FiLayers, FiZap, FiCpu, FiGlobe, FiShield} from "react-icons/fi";
-
-// ─── DATA ───────────────────────────────────────────────────────────────────
-
+SiGraphql, SiRedux, SiGit, SiFigma, SiWebgl, SiRust, SiCriticalrole, SiDjango,  
+SiJavascript} from "react-icons/si";
+import {  FiGithub, FiExternalLink, FiMail, FiTwitter, FiLinkedin,  FiArrowRight, FiX, FiCode, FiLayers, FiZap, FiCpu, FiGlobe, FiShield, } from "react-icons/fi";
+import Agricare from "./assets/agricare.png";
+ 
+import ContactSection from "./Contact";
+//  DATA
+ 
 const projects = [
   {
     id: 1,
-    title: "NeuralFlow",
-    tagline: "ML Pipeline Orchestration",
-    description: "A visual platform for building, monitoring, and deploying ML pipelines at scale.",
-    image: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=800&q=80",
-    tech: [SiPython, SiReact, SiPostgresql, SiDocker],
-    techNames: ["Python", "React", "PostgreSQL", "Docker", "AWS"],
+    title: "AgriCare",
+    tagline: "Growing Better Future for Farmers",
+    description: "AgriCare is a modern agriculture marketplace that connects farmers and buyers on a single platform. Users can list, explore, and purchase agricultural products with ease, along with location-based listings and real-time communication features. The platform aims to simplify trading, improve accessibility, and create better opportunities within the agriculture ecosystem.",
+    image: Agricare,
+    tech: [SiPython, SiReact, SiPostgresql, SiDjango, SiTailwindcss],
+    techNames: ["Python", "React", "PostgreSQL", "Django", "Tailwind CSS"],
     color: "#0d9488",
-    problem: "Data science teams waste 60% of their time on infrastructure, not insights.",
-    approach: "Built a drag-and-drop DAG editor over a Python Celery backend, with real-time log streaming via WebSockets.",
-    features: ["Visual DAG editor", "Real-time logs", "Model versioning", "Auto-scaling workers", "Experiment tracking"],
-    users: "Data engineers & ML teams at mid-to-large companies",
-    github: "#",
+    problem: "It solves the problem of fragmented agricultural trade where farmers struggle to reach buyers and get fair prices. The platform provides a centralized marketplace for easy buying and selling. It also improves transparency and accessibility in the agriculture supply chain",
+    approach: "The approach is to create a user-friendly marketplace with direct buying, selling, and auction features. It also includes a chatbot for assistance and smooth communication. The platform ensures easy navigation and efficient, location-based trading.",
+    features: [ "Product Listing & Browsing", "Auction System", "Real-time Chat", "AI Chatbot Assistance", "Location-based Search & Filtering", "User Authentication & Profiles", "Secure Payment Integration", "Ratings & Reviews", "Order Management & History"],
+    users: "Farmers looking to sell their products and buyers, factory owner wholesalers seeking fresh agricultural goods",
+    github: "https://github.com/codemaniaa/AgriCare",
     demo: "#",
   },
   {
     id: 2,
-    title: "Stratum",
-    tagline: "Design System Framework",
-    description: "A composable, token-based design system with automated visual regression testing.",
+    title: "FaceMark",
+    tagline: "Ai powered Attendance System",
+    description: "FaceMark is an AI-powered attendance system that uses facial recognition technology to automate attendance tracking in educational institutions and workplaces. It provides a seamless and efficient way to record attendance, eliminating the need for manual processes. The system ensures accuracy, saves time, and enhances security by verifying identities through facial recognition.",
     image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
-    tech: [SiReact, SiTypescript, SiFigma, SiWebgl],
-    techNames: ["React", "TypeScript", "Figma", "WebGL"],
+    tech: [SiReact, SiDjango, SiPython, SiPython, SiPython,SiTailwindcss],
+    techNames: ["React","Django","Python", "Deepface", "OpenCv", "Tailwind CSS"],
     color: "#f59e0b",
-    problem: "Design systems drift silently. Engineers and designers diverge over months.",
-    approach: "Token pipeline from Figma → JSON → CSS variables + Storybook integration with pixel-diff CI tests.",
-    features: ["Figma sync", "Token pipeline", "Visual regression CI", "Dark mode support", "A11y auditing"],
-    users: "Product teams shipping design systems",
-    github: "#",
+    problem: "Traditional attendance systems are time-consuming, prone to errors, and can be easily manipulated. FaceMark addresses these issues by providing an automated solution that ensures accurate attendance tracking while enhancing security and efficiency.",
+    approach: "The approach is to leverage facial recognition technology to automate attendance tracking. Users can easily mark their attendance by simply looking at a camera, eliminating the need for manual processes. The system ensures accuracy and security by verifying identities through facial recognition algorithms.",
+    features: ["Facial Recognition Attendance", "Real-time Attendance Tracking", "AI Chatbot Assistance", "Location-based Search & Filtering", "User Authentication & Profiles"],
+    users: "Educational institutions and workplaces",
+    github: "https://github.com/codemaniaa/ai-timetable-project",
     demo: "#",
   },
   {
@@ -76,39 +79,36 @@ const projects = [
 
 const skills = [
   { icon: SiReact, name: "React / Next.js", group: "Frontend" },
-  { icon: SiTypescript, name: "TypeScript", group: "Frontend" },
+  { icon: SiJavascript, name: "JavaScript", group: "Frontend" }, 
   { icon: SiTailwindcss, name: "Tailwind CSS", group: "Frontend" },
-  { icon: SiWebgl, name: "WebGL / Three.js", group: "Frontend" },
-  { icon: SiNodedotjs, name: "Node.js", group: "Backend" },
-  { icon: SiPython, name: "Python", group: "Backend" },
-  { icon: SiRust, name: "Rust", group: "Backend" },
-  { icon: SiGraphql, name: "GraphQL", group: "Backend" },
-  { icon: SiPostgresql, name: "PostgreSQL", group: "Data" },
-  { icon: SiMongodb, name: "MongoDB", group: "Data" },
+  { icon: SiWebgl, name: "WebGL / Three.js", group: "Frontend" }, 
+  { icon: SiPython, name: "Python", group: "Backend" }, 
+  { icon: SiPostgresql, name: "PostgreSQL", group: "Data" }, 
   { icon: SiDocker, name: "Docker", group: "Infra" }, 
   { icon: SiGit, name: "Git", group: "Tools" },
   { icon: SiFigma, name: "Figma", group: "Tools" },
   { icon: SiRedux, name: "Redux", group: "Tools" },
-  { icon: SiMongodb, name: "Redis", group: "Data" },
+  { icon: SiCriticalrole, name: "Problem Solving", group: "Hobbies" },
+  { icon: SiMongodb, name: "Redis", group: "Data" }, 
 ];
 
 const services = [
-  { icon: FiCode, title: "Full-Stack Engineering", desc: "End-to-end product development from architecture to deployment. APIs, databases, and polished UIs." },
+  { icon: FiCode, title: "Full-Stack Development", desc: "End-to-end product development from architecture to deployment. APIs, databases, and polished UIs." },
   { icon: FiLayers, title: "Design Systems", desc: "Scalable, token-based component libraries that bridge design and engineering teams." },
   { icon: FiZap, title: "Performance Engineering", desc: "Profiling, WASM, edge runtimes, and intelligent caching to shave critical milliseconds." },
-  { icon: FiCpu, title: "ML Integration", desc: "Embedding models into products — inference APIs, RAG pipelines, vector search." },
+  { icon: FiCpu, title: "Problem Solving and SaaS", desc: "Embedding models into products — inference APIs, RAG pipelines, vector search." },
   { icon: FiGlobe, title: "Platform Architecture", desc: "Designing distributed systems that scale: event-driven, microservices, observability-first." },
   { icon: FiShield, title: "Technical Consulting", desc: "Advisory for startups making critical architectural decisions under time pressure." },
 ];
 
 const education = [
-  { year: "2020–2022", degree: "M.S. Computer Science", school: "MIT", note: "Focus: Distributed Systems & HCI" },
-  { year: "2016–2020", degree: "B.S. Software Engineering", school: "UC Berkeley", note: "Summa Cum Laude · CS Honor Society" },
-  { year: "2023", degree: "AWS Solutions Architect", school: "Amazon Web Services", note: "Professional Certification" },
-  { year: "2022", degree: "Rust Systems Programming", school: "Rust Foundation", note: "Advanced Track" },
+  { year: "2023 – 2027", degree: "B.S. Computer Science", school: "Comsats University Islamabad", note: "Focus: Website Development, Communication Skills and Problem Solving" },
+  { year: "2019–2021", degree: "FSc Pre Engineering", school: "Punjab College Okara", note: "Learned fundamental concepts in mathematics and Business Studies" },
+  { year: "2022", degree: "Website Development Diploma", school: "Cotham College Okara", note: "Professional Certification in Website Development" },
+  { year: "2022", degree: "Digital Marketing Diploma", school: "DigiSkils", note: "Professional Certification in Marketing" },
 ];
 
-// ─── THREE.JS HERO ───────────────────────────────────────────────────────────
+//  THREE.JS HERO
 
 function HeroCanvas() {
   const mountRef = useRef(null);
@@ -211,7 +211,7 @@ function HeroCanvas() {
   return <div ref={mountRef} className="absolute inset-0 w-full h-full" />;
 }
 
-// ─── SECTION CANVAS (subtle transition divider) ─────────────────────────────
+//  SECTION CANVAS (subtle transition divider) 
 
 function WaveCanvas({ color = "#0d9488" }) {
   const mountRef = useRef(null);
@@ -251,7 +251,7 @@ function WaveCanvas({ color = "#0d9488" }) {
   return <div ref={mountRef} className="w-full h-24 pointer-events-none" />;
 }
 
-// ─── PROJECT MODAL ───────────────────────────────────────────────────────────
+//  PROJECT MODAL
 
 function ProjectModal({ project, onClose }) {
   const Icon = project.icon;
@@ -347,7 +347,7 @@ function ProjectModal({ project, onClose }) {
   );
 }
 
-// ─── FADE IN VIEW WRAPPER ────────────────────────────────────────────────────
+//  FADE IN VIEW WRAPPER
 
 function FadeIn({ children, delay = 0, className = "" }) {
   const ref = useRef(null);
@@ -362,7 +362,6 @@ function FadeIn({ children, delay = 0, className = "" }) {
   );
 }
 
-// ─── MAIN APP ─────────────────────────────────────────────────────────────────
 
 export default function Portfolio() {
   const [scrolled, setScrolled] = useState(false);
@@ -398,7 +397,7 @@ export default function Portfolio() {
       {/* Progress bar */}
       <motion.div className="fixed top-0 left-0 h-[2px] bg-[#0d9488] z-[100]" style={{ width: progressWidth }} />
 
-      {/* ── NAVBAR ── */}
+      {/*  NAVBAR  */}
       <motion.nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "py-3" : "py-6"}`}
         initial={{ y: -60, opacity: 0 }}
@@ -407,7 +406,7 @@ export default function Portfolio() {
       >
         <div className={`mx-auto max-w-7xl px-6 flex items-center justify-between rounded-2xl transition-all duration-500 ${scrolled ? "bg-[#080c09]/80 backdrop-blur-xl border border-white/8 py-3 px-6" : ""}`}>
           <div className="font-black text-xl tracking-tight">
-            <span className="text-[#0d9488]">A.</span>Carter
+            <span className="text-[#0d9488]">ALI </span>Hassan
           </div>
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map(l => (
@@ -440,7 +439,7 @@ export default function Portfolio() {
         </AnimatePresence>
       </motion.nav>
 
-      {/* ── HERO ── */}
+      {/*  HERO  */}
       <section id="hero" className="relative h-screen flex items-center overflow-hidden">
         <HeroCanvas />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#080c09]/10 to-[#080c09]" />
@@ -453,7 +452,7 @@ export default function Portfolio() {
               transition={{ delay: 0.3, duration: 0.8 }}
             >
               <span className="w-2 h-2 rounded-full bg-[#0d9488] animate-pulse" />
-              Available for freelance
+              
             </motion.div>
 
             <motion.h1
@@ -462,7 +461,7 @@ export default function Portfolio() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
             >
-              <span className="block text-white">Alex Carter</span>
+             <span className="text-white"> <span className="text-[#0d9488]">ALI </span>Hassan </span>
               <span className="block text-[#0d9488]">builds things</span>
               <span className="block italic font-['Playfair_Display'] text-[#c8b89a] font-bold">that matter.</span>
             </motion.h1>
@@ -505,14 +504,13 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* ── ABOUT ── */}
+      {/*  ABOUT  */}
       <section id="about" className="relative py-32 overflow-hidden">
         <WaveCanvas color="#0d9488" />
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <FadeIn>
-              <div className="relative">
-                <div className="absolute -top-8 -left-8 text-[120px] font-black text-[#0d9488]/6 leading-none select-none">01</div>
+              <div className="relative"> 
                 <div className="text-xs uppercase tracking-widest text-[#0d9488] font-semibold mb-4">About</div>
                 <h2 className="text-4xl md:text-5xl font-black leading-tight tracking-tight mb-6">
                   Precision meets<br />
@@ -524,7 +522,7 @@ export default function Portfolio() {
                   shipping them before anyone else thinks it's possible.
                 </p>
                 <p className="text-[#8a9988] leading-relaxed text-base">
-                  I care deeply about developer experience, design systems, and the craft of software
+                  Icare deeply about developer experience, design systems, and the craft of software
                   — not just the output. Currently exploring the intersection of AI and product engineering.
                 </p>
               </div>
@@ -532,10 +530,9 @@ export default function Portfolio() {
             <FadeIn delay={0.2}>
               <div className="relative grid grid-cols-2 gap-4">
                 {[
-                  { n: "6+", l: "Years experience" },
-                  { n: "40+", l: "Projects shipped" },
-                  { n: "12M+", l: "Users reached" },
-                  { n: "3×", l: "Startup exits" },
+                  { n: "1+", l: "Years experience" },
+                  { n: "5+", l: "Projects Built" }, 
+                  { n: "3×", l: "Problem Solved" },
                 ].map(({ n, l }) => (
                   <div key={l} className="p-6 rounded-2xl bg-white/3 border border-white/8 hover:border-[#0d9488]/30 transition-colors">
                     <div className="text-3xl font-black text-[#0d9488] mb-1">{n}</div>
@@ -548,7 +545,7 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* ── SKILLS ── */}
+      {/*  SKILLS  */}
       <section id="skills" className="py-32 bg-[#050805]">
         <div className="max-w-7xl mx-auto px-6">
           <FadeIn>
@@ -576,7 +573,7 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* ── PROJECTS ── */}
+      {/*  PROJECTS  */}
       <section id="projects" className="py-32">
         <div className="max-w-7xl mx-auto px-6">
           <FadeIn>
@@ -631,40 +628,12 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* ── SERVICES ── */}
+      {/*  SERVICES  */}
       <section id="services" className="py-32 bg-[#050805]">
-        <div className="max-w-7xl mx-auto px-6">
-          <FadeIn>
-            <div className="text-center mb-16">
-              <div className="text-xs uppercase tracking-widest text-[#0d9488] font-semibold mb-3">Services</div>
-              <h2 className="text-4xl md:text-5xl font-black tracking-tight">
-                What I <span className="italic font-['Playfair_Display'] text-[#c8b89a]">offer</span>
-              </h2>
-            </div>
-          </FadeIn>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {services.map(({ icon: Icon, title, desc }, i) => (
-              <FadeIn key={title} delay={i * 0.07}>
-                <motion.div
-                  className="group p-7 rounded-3xl border border-white/8 bg-white/2 relative overflow-hidden"
-                  whileHover={{ borderColor: "rgba(13,148,136,0.35)", backgroundColor: "rgba(13,148,136,0.04)" }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <div className="absolute top-0 right-0 w-32 h-32 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                    style={{ background: "radial-gradient(circle, rgba(13,148,136,0.12) 0%, transparent 70%)", transform: "translate(30%, -30%)" }} />
-                  <div className="w-12 h-12 rounded-2xl bg-[#0d9488]/12 border border-[#0d9488]/20 flex items-center justify-center mb-5 group-hover:bg-[#0d9488]/20 transition-colors">
-                    <Icon className="text-[#0d9488] text-xl" />
-                  </div>
-                  <h3 className="font-bold text-lg mb-2 tracking-tight">{title}</h3>
-                  <p className="text-[#6a7e68] text-sm leading-relaxed">{desc}</p>
-                </motion.div>
-              </FadeIn>
-            ))}
-          </div>
-        </div>
+       <ContactSection />
       </section>
 
-      {/* ── EDUCATION ── */}
+      {/*  EDUCATION  */}
       <section id="education" className="py-32">
         <div className="max-w-4xl mx-auto px-6">
           <FadeIn>
@@ -689,7 +658,7 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* ── CONTACT ── */}
+      {/*  CONTACT  */}
       <section id="contact" className="py-32 bg-[#050805] relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full"
@@ -709,7 +678,7 @@ export default function Portfolio() {
             <div className="bg-white/3 border border-white/8 rounded-3xl p-8 space-y-4">
               {[
                 { id: "name", label: "Name", type: "text", placeholder: "Your name" },
-                { id: "email", label: "Email", type: "email", placeholder: "hello@example.com" },
+                { id: "email", label: "Email", type: "email", placeholder: "Ali@example.com" },
               ].map(({ id, label, type, placeholder }) => (
                 <div key={id}>
                   <label className="block text-xs uppercase tracking-widest text-[#6a7e68] font-semibold mb-2">{label}</label>
@@ -748,13 +717,13 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* ── FOOTER ── */}
+      {/*  FOOTER  */}
       <footer className="py-10 border-t border-white/6">
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="font-black text-lg tracking-tight">
-            <span className="text-[#0d9488]">A.</span>Carter
+            <span className="text-[#0d9488]">ALI </span>Hassan template_edw5zlf service_gr5vd4p KuwF7vLbWlrDr4RPB
           </div>
-          <p className="text-[#4a5e50] text-xs">© 2025 Alex Carter. Built with React, Three.js & Framer Motion.</p>
+          <p className="text-[#4a5e50] text-xs"> 2025 Ali Hassan. Built with React, Three.js & Framer Motion.</p>
           <div className="flex gap-6">
             {navLinks.slice(0, 4).map(l => (
               <button key={l} onClick={() => scrollTo(l.toLowerCase())}
@@ -764,10 +733,11 @@ export default function Portfolio() {
         </div>
       </footer>
 
-      {/* ── PROJECT MODAL ── */}
+      {/*  PROJECT MODAL  */}
       <AnimatePresence>
         {activeProject && <ProjectModal project={activeProject} onClose={() => setActiveProject(null)} />}
       </AnimatePresence>
     </div>
   );
 }
+
