@@ -5,7 +5,7 @@ import { SiReact, SiNextdotjs, SiTypescript, SiNodedotjs, SiPython, SiTailwindcs
 SiGraphql, SiRedux, SiGit, SiFigma, SiWebgl, SiRust, SiCriticalrole, SiDjango,  
 SiJavascript} from "react-icons/si";
 import {  FiGithub, FiExternalLink, FiMail, FiTwitter, FiLinkedin,  FiArrowRight, FiX, FiCode, FiLayers, FiZap, FiCpu, FiGlobe, FiShield, } from "react-icons/fi";
-import Agricare from "./assets/agricare.png";
+import Agricare from "./assets/Agricare.png";
 import emailjs from "@emailjs/browser";
 
 export default function ContactSection() {
