@@ -2,10 +2,12 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence, useScroll, useTransform, useInView } from "framer-motion";
 import * as THREE from "three";
 import { SiReact, SiNextdotjs, SiTypescript, SiNodedotjs, SiPython, SiTailwindcss, SiPostgresql, SiMongodb, SiDocker, SiGraphql, SiRedux, SiGit, SiFigma, SiWebgl, SiRust, SiCriticalrole, SiDjango,  SiThreedotjs, SiJavascript} from "react-icons/si";
-import {  FiGithub, FiExternalLink, FiMail, FiTwitter, FiLinkedin,  FiArrowRight, FiX, FiCode, FiLayers, FiZap, FiCpu, FiGlobe, FiShield, } from "react-icons/fi";
+import {  FiGithub, FiExternalLink, FiMail, FiTwitter, FiLinkedin,  FiArrowRight, FiX, FiCode, FiLayers, FiZap, FiCpu, FiGlobe, FiPhone, FiShield, } from "react-icons/fi";
 import Agricare from "./assets/Agricare.png";  
 import profile from "./assets/profile.jpeg";
 import portfolio from  "./assets/portfolio.png";
+import facemark from "./assets/facemark.png";
+
 import ContactSection from "./Contact";
 //  DATA
  
@@ -31,7 +33,7 @@ const projects = [
     title: "FaceMark",
     tagline: "Ai powered Attendance System",
     description: "FaceMark is an AI-powered attendance system that uses facial recognition technology to automate attendance tracking in educational institutions and workplaces. It provides a seamless and efficient way to record attendance, eliminating the need for manual processes. The system ensures accuracy, saves time, and enhances security by verifying identities through facial recognition.",
-    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
+    image: facemark,
     tech: [SiReact, SiDjango, SiPython, SiPython, SiPython,SiTailwindcss],
     techNames: ["React","Django","Python", "Deepface", "OpenCv", "Tailwind CSS"],
     color: "#f59e0b",
@@ -380,47 +382,114 @@ export default function Portfolio() {
       {/* Progress bar */}
       <motion.div className="fixed top-0 left-0 h-[2px] bg-[#0d9488] z-[100]" style={{ width: progressWidth }} />
 
-      {/*  NAVBAR  */}
+            {/* NAVBAR */}
       <motion.nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "py-3" : "py-6"}`}
         initial={{ y: -60, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
       >
-        <div className={`mx-auto max-w-7xl px-6 flex items-center justify-between rounded-2xl transition-all duration-500 ${scrolled ? "bg-[#080c09]/80 backdrop-blur-xl border border-white/8 py-3 px-6" : ""}`}>
-          <div className="font-black text-xl tracking-tight">
-            <span className="text-[#0d9488]">ALI </span>Hassan
-          </div>
+        <div
+          className={`mx-auto max-w-7xl px-6 flex items-center justify-between rounded-2xl transition-all duration-500 ${
+            scrolled || menuOpen
+              ? "bg-[#080c09]/80 backdrop-blur-xl border border-white/10 py-3"
+              : "py-4"
+          }`}
+        >
+          {/* Logo */}
+          <button onClick={() => scrollTo("hero")} className="font-black text-xl tracking-tight group">
+            <span className="text-[#0d9488] group-hover:text-[#14b8a6] transition-colors">ALI </span>
+            <span className="text-white">Hassan</span>
+          </button>
+
+          {/* Desktop links */}
           <div className="hidden md:flex items-center gap-8">
-            {navLinks.map(l => (
-              <button key={l} onClick={() => scrollTo(l.toLowerCase())}
-                className="text-sm text-[#8a9988] hover:text-white transition-colors duration-200 tracking-wide font-medium">
+            {navLinks.map((l) => (
+              <button
+                key={l}
+                onClick={() => scrollTo(l.toLowerCase())}
+                className="relative text-sm text-[#8a9988] hover:text-white transition-colors duration-200 tracking-wide font-medium after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-px after:w-0 after:bg-[#0d9488] hover:after:w-full after:transition-all after:duration-300"
+              >
                 {l}
               </button>
             ))}
-            <button onClick={() => scrollTo("contact")}
-              className="px-5 py-2.5 bg-[#0d9488] hover:bg-[#0f766e] rounded-xl text-sm font-semibold transition-colors text-black">
+            <button
+              onClick={() => scrollTo("contact")}
+              className="relative px-5 py-2.5 bg-[#0d9488] hover:bg-[#0f766e] rounded-xl text-sm font-semibold text-black transition-all duration-300 hover:shadow-[0_0_24px_rgba(13,148,136,0.45)] hover:-translate-y-0.5 active:translate-y-0"
+            >
               Hire Me
             </button>
           </div>
-          <button className="md:hidden text-white" onClick={() => setMenuOpen(v => !v)}>
-            <div className="space-y-1.5">
-              <div className="w-6 h-0.5 bg-white" />
-              <div className="w-4 h-0.5 bg-[#0d9488]" />
-            </div>
+
+          {/* Mobile toggle (animated burger ↔ close) */}
+          <button
+            className="md:hidden relative w-10 h-10 flex items-center justify-center rounded-lg hover:bg-white/5 transition-colors"
+            onClick={() => setMenuOpen((v) => !v)}
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={menuOpen}
+          >
+            <span className="relative w-6 h-5 block">
+              <motion.span
+                className="absolute left-0 top-0 w-6 h-0.5 bg-white rounded-full"
+                animate={menuOpen ? { rotate: 45, y: 9 } : { rotate: 0, y: 0 }}
+                transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              />
+              <motion.span
+                className="absolute left-0 top-1/2 -translate-y-1/2 h-0.5 bg-[#0d9488] rounded-full"
+                animate={menuOpen ? { opacity: 0, width: 0 } : { opacity: 1, width: 16 }}
+                transition={{ duration: 0.2 }}
+              />
+              <motion.span
+                className="absolute left-0 bottom-0 w-6 h-0.5 bg-white rounded-full"
+                animate={menuOpen ? { rotate: -45, y: -9 } : { rotate: 0, y: 0 }}
+                transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              />
+            </span>
           </button>
         </div>
+
+        {/* Mobile dropdown */}
         <AnimatePresence>
           {menuOpen && (
-            <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}
-              className="md:hidden absolute top-full left-4 right-4 mt-2 bg-[#0f1410]/95 backdrop-blur-xl border border-white/10 rounded-2xl p-6 flex flex-col gap-4">
-              {navLinks.map(l => (
-                <button key={l} onClick={() => scrollTo(l.toLowerCase())} className="text-left text-sm text-[#c8b89a] hover:text-white font-medium">{l}</button>
+            <motion.div
+              initial={{ opacity: 0, y: -16, scale: 0.97 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -16, scale: 0.97 }}
+              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              className="md:hidden absolute top-full left-4 right-4 mt-3 bg-[#0f1410]/95 backdrop-blur-xl border border-white/10 rounded-2xl p-6 flex flex-col gap-1 shadow-2xl shadow-black/40 origin-top"
+            >
+              {navLinks.map((l, i) => (
+                <motion.button
+                  key={l}
+                  initial={{ opacity: 0, x: -12 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.05 + i * 0.05, duration: 0.3 }}
+                  onClick={() => {
+                    scrollTo(l.toLowerCase());
+                    setMenuOpen(false);
+                  }}
+                  className="text-left text-sm text-[#c8b89a] hover:text-white hover:bg-white/5 font-medium px-3 py-3 rounded-lg transition-colors"
+                >
+                  {l}
+                </motion.button>
               ))}
+              <motion.button
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.05 + navLinks.length * 0.05, duration: 0.3 }}
+                onClick={() => {
+                  scrollTo("contact");
+                  setMenuOpen(false);
+                }}
+                className="mt-3 px-5 py-3 bg-[#0d9488] hover:bg-[#0f766e] rounded-xl text-sm font-semibold text-black transition-colors"
+              >
+                Hire Me
+              </motion.button>
             </motion.div>
           )}
         </AnimatePresence>
       </motion.nav>
+
 
      
  
@@ -540,13 +609,10 @@ export default function Portfolio() {
                   <span className="italic font-['Playfair_Display'] text-[#c8b89a]">creativity.</span>
                 </h2>
                 <p className="text-[#8a9988] leading-relaxed text-base mb-6">
-                  I'm a full-stack engineer with 6 years building products that millions of people use.
-                  My superpower is translating ambiguous problems into elegant, performant systems — then
-                  shipping them before anyone else thinks it's possible.
+                 I am a full-stack web developer who specializes in modern web technologies such as React.js, Django, Python, JavaScript, Tailwind CSS, and Three.js. I not only build web applications, but also create smart and effective digital solutions that truly solve customer problems. My creative thinking and strong problem-solving skills help me create unique and visually appealing websites.
                 </p>
                 <p className="text-[#8a9988] leading-relaxed text-base">
-                  Icare deeply about developer experience, design systems, and the craft of software
-                  — not just the output. Currently exploring the intersection of AI and product engineering.
+                  Along with this, I am a 7th semester student of Computer Science at COMSATS University Islamabad, Sahiwal Campus. I believe in continuous learning, creating new projects and improving my skills, so that I can gain a strong and reliable position in the field of technology.
                 </p>
               </div>
             </FadeIn>
@@ -741,20 +807,46 @@ export default function Portfolio() {
       </section>
 
       {/*  FOOTER  */}
-      <footer className="py-10 border-t border-white/6">
-        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="font-black text-lg tracking-tight">
-            <span className="text-[#0d9488]">ALI </span>Hassan
-          </div>
-          <p className="text-[#4a5e50] text-xs"> 2025 Ali Hassan. Built with React, Three.js & Framer Motion.</p>
-          <div className="flex gap-6">
-            {navLinks.slice(0, 4).map(l => (
-              <button key={l} onClick={() => scrollTo(l.toLowerCase())}
-                className="text-xs text-[#4a5e50] hover:text-[#0d9488] transition-colors">{l}</button>
-            ))}
-          </div>
+        <footer className="py-10 border-t border-white/6">
+      <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        {/* Branding */}
+        <div className="font-black text-lg tracking-tight text-center md:text-left">
+          <span className="text-[#0d9488]">ALI </span>Hassan
         </div>
-      </footer>
+
+        {/* Info */}
+        <p className="text-[#4a5e50] text-xs text-center md:text-left">
+          © 2025 Ali Hassan Full-Stack Developer. All rights reserved.
+        </p>
+
+        {/* Navigation */}
+        <div className="flex flex-wrap justify-center gap-4">
+          {navLinks.slice(0, 4).map(l => (
+            <button
+              key={l}
+              onClick={() => scrollTo(l.toLowerCase())}
+              className="text-xs text-[#4a5e50] hover:text-[#0d9488] transition-colors"
+            >
+              {l}
+            </button>
+          ))}
+        </div>
+      </div>
+       {/* Contact links */}
+        <div className=" flex flex-wrap justify-center gap-6 text-sm text-[#4a5e50] mt-4 md:mt-0">
+          <a href="mailto:hassanaliabbasi478@gmail.com" className="flex items-center gap-2 hover:text-[#0d9488] transition-colors">
+            <FiMail />: hassanaliabbasi478@gmail.com
+          </a>
+          <a href="tel:+92367731773" className="flex items-center gap-2 hover:text-[#0d9488] transition-colors">
+            <FiPhone />: +92367731773
+          </a>
+          <a href="https://www.linkedin.com/in/ali-hassan-84920022b?" target="_blank" rel="noopener noreferrer"
+            className="flex items-center gap-2 hover:text-[#0d9488] transition-colors">
+            <FiLinkedin />: LinkedIn
+          </a>
+        </div>
+    </footer>
+
 
       {/*  PROJECT MODAL  */}
       <AnimatePresence>
