@@ -1,12 +1,11 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence, useScroll, useTransform, useInView } from "framer-motion";
 import * as THREE from "three";
-import { SiReact, SiNextdotjs, SiTypescript, SiNodedotjs, SiPython, SiTailwindcss, SiPostgresql, SiMongodb, SiDocker,
-SiGraphql, SiRedux, SiGit, SiFigma, SiWebgl, SiRust, SiCriticalrole, SiDjango,  
-SiJavascript} from "react-icons/si";
+import { SiReact, SiNextdotjs, SiTypescript, SiNodedotjs, SiPython, SiTailwindcss, SiPostgresql, SiMongodb, SiDocker, SiGraphql, SiRedux, SiGit, SiFigma, SiWebgl, SiRust, SiCriticalrole, SiDjango,  SiThreedotjs, SiJavascript} from "react-icons/si";
 import {  FiGithub, FiExternalLink, FiMail, FiTwitter, FiLinkedin,  FiArrowRight, FiX, FiCode, FiLayers, FiZap, FiCpu, FiGlobe, FiShield, } from "react-icons/fi";
-import Agricare from "./assets/agricare.png";
- 
+import Agricare from "./assets/agricare.png";  
+import profile from "./assets/profile.jpeg";
+import portfolio from  "./assets/portfolio.png";
 import ContactSection from "./Contact";
 //  DATA
  
@@ -45,51 +44,35 @@ const projects = [
   },
   {
     id: 3,
-    title: "Vantage",
-    tagline: "Real-time Analytics Engine",
-    description: "Sub-second analytics over billions of events using columnar storage and WASM query workers.",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
-    tech: [SiRust, SiReact, SiWebgl, SiGraphql],
-    techNames: ["Rust", "React", "WebGL", "GraphQL"],
-    color: "#6366f1",
-    problem: "BI tools force trade-offs between data freshness and query performance.",
-    approach: "Columnar Rust core compiled to WASM, running analytical queries client-side with push-based stream updates.",
-    features: ["WASM query engine", "Columnar storage", "Live streaming", "Custom viz layer", "SQL interface"],
-    users: "Growth & data teams who need speed without a data warehouse",
-    github: "#",
+    title: "My Portfolio",
+    tagline: "Showcasing My Journey and Skills",
+    description: "My Portfolio is a personal website that serves as a comprehensive showcase of my journey, skills, and projects as a full-stack engineer. It provides an interactive and visually appealing platform to highlight my expertise in performance optimization, design systems, and problem-solving. The portfolio includes detailed case studies of my projects, a curated list of skills, and an engaging narrative that reflects my passion for building impactful products.",
+    image: portfolio,
+    tech: [SiReact, SiWebgl, SiTailwindcss, SiThreedotjs],
+    techNames: ["React", "WebGL", "TailwindCSS", "Three.js"],
+    color: "#6366f1", 
+    approach: "Beautifullly designed portfolio website built with React and Three.js, featuring a custom 3D hero section, smooth scroll-based animations, and interactive project showcases. The design emphasizes readability and visual storytelling, with a dark theme and vibrant accent colors to create a modern and engaging user experience.",
+    features: ["Interactive 3D Hero Section", "Smooth Scroll Animations", "Detailed Project Case Studies", "Curated Skills Showcase", "Responsive Design", "Contact Form with EmailJS Integration"],
+    users: "Potential employers, collaborators, and anyone interested in learning about my work and skills",
+    github: "https://github.com/codemaniaa/portfolio",
     demo: "#",
   },
-  {
-    id: 4,
-    title: "Synapse",
-    tagline: "Collaborative Code Editor",
-    description: "A multiplayer code editor with AI pair programming, operational transforms, and presence.",
-    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&q=80",
-    tech: [SiNextdotjs, SiNodedotjs, SiMongodb, SiRedux],
-    techNames: ["Next.js", "Node.js", "MongoDB", "Redux"],
-    color: "#10b981",
-    problem: "Remote pair programming is clunky—screenshare latency kills flow.",
-    approach: "OT-based CRDT sync layer with Yjs, WebRTC cursors, and a GPT-4 sidecar for inline suggestions.",
-    features: ["OT/CRDT sync", "AI suggestions", "WebRTC presence", "Multi-cursor", "Session replay"],
-    users: "Remote engineering teams & coding bootcamps",
-    github: "#",
-    demo: "#",
-  },
+  
 ];
 
 const skills = [
-  { icon: SiReact, name: "React / Next.js", group: "Frontend" },
+  { icon: SiReact, name: "React", group: "Frontend" },
   { icon: SiJavascript, name: "JavaScript", group: "Frontend" }, 
   { icon: SiTailwindcss, name: "Tailwind CSS", group: "Frontend" },
-  { icon: SiWebgl, name: "WebGL / Three.js", group: "Frontend" }, 
+  { icon: SiWebgl, name: "Three.js", group: "Frontend" }, 
   { icon: SiPython, name: "Python", group: "Backend" }, 
+  { icon: SiDjango, name: "Django", group: "Backend" },
   { icon: SiPostgresql, name: "PostgreSQL", group: "Data" }, 
   { icon: SiDocker, name: "Docker", group: "Infra" }, 
   { icon: SiGit, name: "Git", group: "Tools" },
   { icon: SiFigma, name: "Figma", group: "Tools" },
   { icon: SiRedux, name: "Redux", group: "Tools" },
-  { icon: SiCriticalrole, name: "Problem Solving", group: "Hobbies" },
-  { icon: SiMongodb, name: "Redis", group: "Data" }, 
+  { icon: SiCriticalrole, name: "Problem Solving", group: "Hobbies" }, 
 ];
 
 const services = [
@@ -439,46 +422,45 @@ export default function Portfolio() {
         </AnimatePresence>
       </motion.nav>
 
-      {/*  HERO  */}
-      <section id="hero" className="relative h-screen flex items-center overflow-hidden">
+     
+ 
+
+{/*  HERO  */}
+      <section id="hero" className="relative min-h-screen flex items-center overflow-hidden">
         <HeroCanvas />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#080c09]/10 to-[#080c09]" />
-        <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.2 }}>
-            <motion.div
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#0d9488]/30 text-[#0d9488] text-xs font-semibold tracking-widest uppercase mb-8"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.8 }}
-            >
-              <span className="w-2 h-2 rounded-full bg-[#0d9488] animate-pulse" />
-              
-            </motion.div>
+        <div className="absolute inset-0 bg-gradient-to-r from-[#080c09] via-[#080c09]/60 to-transparent lg:via-[#080c09]/30" />
+
+        <div className="relative z-10 max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-12 gap-12 items-center py-24">
+          {/* LEFT — copy */}
+          <motion.div
+            className="lg:col-span-7"
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.2 }}
+          >
 
             <motion.h1
               className="font-black text-5xl md:text-7xl lg:text-8xl leading-[0.95] tracking-tighter mb-6"
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
             >
-             <span className="text-white"> <span className="text-[#0d9488]">ALI </span>Hassan </span>
+              <span className="text-white"><span className="text-[#0d9488]">ALI </span>Hassan</span>
               <span className="block text-[#0d9488]">builds things</span>
               <span className="block italic font-['Playfair_Display'] text-[#c8b89a] font-bold">that matter.</span>
             </motion.h1>
 
             <motion.p
               className="max-w-lg text-[#8a9988] text-lg leading-relaxed mb-10"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 0.8 }}
             >
-              Full-stack engineer obsessed with performance, design systems, and the 1% of polish that separates good from great.
+              Full-Stack Developer obsessed with performance, design systems, and the 1% of polish that separates good from great.
             </motion.p>
 
-            <motion.div className="flex flex-col sm:flex-row gap-4"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.0, duration: 0.8 }}>
+            <motion.div
+              className="flex flex-col sm:flex-row gap-4"
+              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.0, duration: 0.8 }}
+            >
               <button onClick={() => scrollTo("projects")}
                 className="group flex items-center gap-3 px-8 py-4 bg-[#0d9488] hover:bg-[#0f766e] rounded-2xl font-bold text-sm text-black transition-all duration-200">
                 View Projects
@@ -491,11 +473,50 @@ export default function Portfolio() {
             </motion.div>
           </motion.div>
 
+          {/* RIGHT — portrait */}
+          <motion.div
+            className="lg:col-span-5 relative flex justify-center lg:justify-end"
+            initial={{ opacity: 0, x: 60 }} animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.7, duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <div className="relative w-[280px] sm:w-[340px] lg:w-[420px] aspect-[4/5]">
+              {/* glow */}
+              <div className="absolute -inset-6 bg-[#0d9488]/20 blur-3xl rounded-full" />
+              {/* deco frame */}
+              <div className="absolute -top-4 -right-4 w-24 h-24 border-t-2 border-r-2 border-[#0d9488]" />
+              <div className="absolute -bottom-4 -left-4 w-24 h-24 border-b-2 border-l-2 border-[#c8b89a]" />
+
+              <motion.div
+                className="relative w-full h-full overflow-hidden rounded-[2rem] border border-white/10 shadow-[0_30px_80px_-20px_rgba(13,148,136,0.45)]"
+                animate={{ y: [0, -12, 0] }}
+                transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
+              >
+                <img
+                  src={profile}
+                  alt="Ali Hassan portrait"
+                  className="w-full h-full object-cover grayscale-[20%] contrast-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#080c09] via-transparent to-transparent" />
+                <div className="absolute inset-0 mix-blend-overlay bg-gradient-to-br from-[#0d9488]/20 via-transparent to-[#c8b89a]/10" />
+              </motion.div>
+
+              {/* floating badge */}
+              <motion.div
+                className="absolute -left-6 bottom-12 bg-[#080c09]/90 backdrop-blur border border-[#0d9488]/30 rounded-2xl px-4 py-3 shadow-xl"
+                initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.4, duration: 0.8 }}
+              >
+                <div className="text-[10px] uppercase tracking-widest text-[#4a5e50]">Developer</div>
+                <div className="text-sm font-bold text-white">Ali Hassan</div>
+              </motion.div>
+            </div>
+          </motion.div>
+
+          {/* scroll indicator */}
           <motion.div
             className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.5 }}>
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.5 }}
+          >
             <span className="text-[10px] uppercase tracking-widest text-[#4a5e50]">Scroll</span>
             <motion.div className="w-px h-10 bg-gradient-to-b from-[#0d9488] to-transparent"
               animate={{ scaleY: [1, 0.3, 1] }}
@@ -503,6 +524,8 @@ export default function Portfolio() {
           </motion.div>
         </div>
       </section>
+
+
 
       {/*  ABOUT  */}
       <section id="about" className="relative py-32 overflow-hidden">
@@ -701,12 +724,12 @@ export default function Portfolio() {
           <FadeIn delay={0.2}>
             <div className="flex justify-center gap-5 mt-10">
               {[
-                { icon: FiGithub, href: "#", label: "GitHub" },
-                { icon: FiLinkedin, href: "#", label: "LinkedIn" },
-                { icon: FiTwitter, href: "#", label: "Twitter" },
-                { icon: FiMail, href: "mailto:hello@alexcarter.dev", label: "Email" },
+                { icon: FiGithub, href: "https://github.com/codemaniaa/", label: "GitHub" },
+                { icon: FiLinkedin, href: "https://www.linkedin.com/in/ali-hassan-84920022b?", label: "LinkedIn" },
+                { icon: FiTwitter, href: "https://twitter.com/ali_hassan_", label: "Twitter" },
+                { icon: FiMail, href:"https://mail.google.com/mail/?view=cm&fs=1&to=hassanaliabbasi478@gmail.com", label: "Email" }
               ].map(({ icon: Icon, href, label }) => (
-                <motion.a key={label} href={href}
+                <motion.a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label}
                   className="w-11 h-11 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-[#8a9988] hover:text-[#0d9488] hover:border-[#0d9488]/40 transition-colors"
                   whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
                   <Icon className="text-lg" />
@@ -721,7 +744,7 @@ export default function Portfolio() {
       <footer className="py-10 border-t border-white/6">
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="font-black text-lg tracking-tight">
-            <span className="text-[#0d9488]">ALI </span>Hassan template_edw5zlf service_gr5vd4p KuwF7vLbWlrDr4RPB
+            <span className="text-[#0d9488]">ALI </span>Hassan
           </div>
           <p className="text-[#4a5e50] text-xs"> 2025 Ali Hassan. Built with React, Three.js & Framer Motion.</p>
           <div className="flex gap-6">
