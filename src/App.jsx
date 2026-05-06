@@ -3,7 +3,7 @@ import { motion, AnimatePresence, useScroll, useTransform, useInView } from "fra
 import * as THREE from "three";
 import { SiReact, SiNextdotjs, SiTypescript, SiNodedotjs, SiPython, SiTailwindcss, SiPostgresql, SiMongodb, SiDocker, SiGraphql, SiRedux, SiGit, SiFigma, SiWebgl, SiRust, SiCriticalrole, SiDjango,  SiThreedotjs, SiJavascript} from "react-icons/si";
 import {  FiGithub, FiExternalLink, FiMail, FiTwitter, FiLinkedin,  FiArrowRight, FiX, FiCode, FiLayers, FiZap, FiCpu, FiGlobe, FiShield, } from "react-icons/fi";
-import Agricare from "./assets/agricare.png";  
+import Agricare from "./assets/Agricare.png";  
 import profile from "./assets/profile.jpeg";
 import portfolio from  "./assets/portfolio.png";
 import ContactSection from "./Contact";
